@@ -34,7 +34,7 @@ export interface ErrorPageConfig {
 export const siteConfig: SiteConfig = {
   title: 'Cloudflare 安全防护',
   description: '本站正在使用安全服务来保护自己免受在线攻击',
-  contactEmail: 'admin@example.com',
+  contactEmail: 'support@bytecook.io',
   adminContact: '请自行联系网站管理员',
 
   images: {
