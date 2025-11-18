@@ -38,8 +38,8 @@ export const siteConfig: SiteConfig = {
   adminContact: '请自行联系网站管理员',
 
   images: {
-    background1: '/1.jpg',
-    background2: '/2.jpg',
+    background1: '/1.webp',
+    background2: '/2.webp',
   },
 
   errorPages: {

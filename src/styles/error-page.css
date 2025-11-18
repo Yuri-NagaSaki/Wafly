@@ -164,7 +164,7 @@ button:focus {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url('/1.jpg');
+  background-image: url('/1.webp');
   background-position: bottom;
   background-size: contain;
   background-repeat: no-repeat;
@@ -199,7 +199,7 @@ button:focus {
   position: relative;
   padding-bottom: 100%;
   width: 100%;
-  background-image: url('/2.jpg');
+  background-image: url('/2.webp');
   background-size: 100% 100%;
 }
 
@@ -284,10 +284,12 @@ ul.cferror_details li:first-child::before {
     -webkit-transform: translateY(10px);
     transform: translateY(10px);
   }
+
   66% {
     -webkit-transform: translateY(-10px);
     transform: translateY(-10px);
   }
+
   100% {
     -webkit-transform: translateY(0);
     transform: translateY(0);
@@ -299,10 +301,12 @@ ul.cferror_details li:first-child::before {
     -webkit-transform: translateY(10px);
     transform: translateY(10px);
   }
+
   66% {
     -webkit-transform: translateY(-10px);
     transform: translateY(-10px);
   }
+
   100% {
     -webkit-transform: translateY(0);
     transform: translateY(0);
@@ -374,7 +378,7 @@ ul.cferror_details li:first-child::before {
     order: 2;
     text-align: center;
     height: 70vh;
-    background-image: url('/1.jpg') !important;
+    background-image: url('/1.webp') !important;
   }
 
   .right-sec {
@@ -429,6 +433,6 @@ ul.cferror_details li:first-child::before {
   }
 
   .left-sec {
-    background-image: url('/1.jpg') !important;
+    background-image: url('/1.webp') !important;
   }
 }

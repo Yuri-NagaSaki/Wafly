@@ -1,15 +1,14 @@
 ---
 /**
- * 攻击模式页面
- * 当站点处于"攻击模式"时显示
+ * under-attack 页面 - 中文
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ErrorPage from '../components/ErrorPage.astro';
-import { siteConfig } from '../config/site.config';
+import { useTranslations } from '../i18n/utils';
 
-const pageConfig = siteConfig.errorPages['under-attack'];
+const t = useTranslations('zh');
 ---
 
-<BaseLayout title={pageConfig.title} lang="en">
-  <ErrorPage config={pageConfig} />
+<BaseLayout title={t.errorPages['under-attack'].title}>
+  <ErrorPage pageType="under-attack" translations={t} />
 </BaseLayout>

@@ -154,7 +154,7 @@ cloudflare-waf-pages/
 
 1. **HTML 后缀**: Astro 构建输出的是 `.html` 文件，Cloudflare 配置时需要包含完整路径（如 `/waf-block.html`）
 
-2. **背景图片**: 确保 `public/` 目录下有 `1.jpg` 和 `2.jpg`，或在配置文件中指定正确路径
+2. **背景图片**: 确保 `public/` 目录下有 `1.webp` 和 `2.webp`，或在配置文件中指定正确路径
 
 3. **Cloudflare 占位符**: `::RAY_ID::`、`::CLIENT_IP::` 等占位符会被 Cloudflare 自动替换，无需手动处理
 

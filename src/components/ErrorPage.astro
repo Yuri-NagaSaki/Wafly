@@ -1,22 +1,26 @@
 ---
 /**
  * 错误页面组件
- * 用于显示各种错误信息
+ * 用于显示各种错误信息，支持多语言
  */
-import type { ErrorPageConfig } from '../config/site.config';
 import { siteConfig } from '../config/site.config';
 
 export interface Props {
-  config: ErrorPageConfig;
+  pageType: string;
+  translations: any;
   backgroundImage1?: string;
   backgroundImage2?: string;
 }
 
 const {
-  config,
+  pageType,
+  translations,
   backgroundImage1 = siteConfig.images.background1,
   backgroundImage2 = siteConfig.images.background2,
 } = Astro.props;
+
+const config = translations.errorPages[pageType];
+const showContactInfo = pageType !== '100x';
 ---
 
 <div class="md:flex min-h-screen main-body">
@@ -31,9 +35,9 @@ const {
           <h1>{config.subHeading}</h1>
         </p>
         {
-          config.showContactInfo && (
+          showContactInfo && (
             <p class="sub-header">
-              <h1>{siteConfig.adminContact}</h1>
+              <h1>{translations.site.adminContact}</h1>
             </p>
           )
         }
@@ -44,9 +48,9 @@ const {
       <div class="sub-footer">
         <div class="w-full h-2 bg-grey-light my-3 md:my-6"></div>
         <ul>
-          <li>Cloudflare事件ID: ::RAY_ID::</li>
-          <li>你的IP: ::CLIENT_IP::</li>
-          <li>Performance &amp; Security by Cloudflare</li>
+          <li>{translations.footer.rayId}: ::RAY_ID::</li>
+          <li>{translations.footer.yourIp}: ::CLIENT_IP::</li>
+          <li>{translations.footer.poweredBy}</li>
         </ul>
       </div>
     </div>

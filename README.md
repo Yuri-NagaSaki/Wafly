@@ -73,8 +73,8 @@ export const siteConfig: SiteConfig = {
 
   // 背景图片
   images: {
-    background1: '/1.jpg',  // 左侧背景
-    background2: '/2.jpg',  // 右侧背景
+    background1: '/1.webp',  // 左侧背景
+    background2: '/2.webp',  // 右侧背景
   },
 
   // 错误页面配置
@@ -94,7 +94,7 @@ export const siteConfig: SiteConfig = {
 ### 自定义步骤
 
 1. **修改基础信息**：编辑 `siteConfig` 中的 `title`、`contactEmail` 等字段
-2. **更换背景图片**：替换 `public/` 目录下的 `1.jpg` 和 `2.jpg`，或修改配置文件中的路径
+2. **更换背景图片**：替换 `public/` 目录下的 `1.webp` 和 `2.webp`，或修改配置文件中的路径
 3. **调整错误信息**：修改 `errorPages` 中对应页面的文本内容
 4. **自定义样式**：编辑 `src/styles/error-page.css` 文件
 
@@ -143,8 +143,8 @@ wrangler pages deploy dist
 ```
 cloudflare-waf-pages/
 ├── public/                  # 静态资源
-│   ├── 1.jpg               # 左侧背景图
-│   ├── 2.jpg               # 右侧背景图
+│   ├── 1.webp               # 左侧背景图
+│   ├── 2.webp               # 右侧背景图
 │   └── favicon.svg
 ├── src/
 │   ├── components/         # Astro 组件
@@ -229,8 +229,8 @@ const pageConfig = siteConfig.errorPages['my-custom-error'];
 ```astro
 <ErrorPage
   config={pageConfig}
-  backgroundImage1="/custom-bg-1.jpg"
-  backgroundImage2="/custom-bg-2.jpg"
+  backgroundImage1="/custom-bg-1.webp"
+  backgroundImage2="/custom-bg-2.webp"
 />
 ```
 

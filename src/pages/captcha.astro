@@ -1,15 +1,14 @@
 ---
 /**
- * 验证码页面
- * 当需要用户完成验证时显示
+ * captcha 页面 - 中文
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ErrorPage from '../components/ErrorPage.astro';
-import { siteConfig } from '../config/site.config';
+import { useTranslations } from '../i18n/utils';
 
-const pageConfig = siteConfig.errorPages['captcha'];
+const t = useTranslations('zh');
 ---
 
-<BaseLayout title={pageConfig.title}>
-  <ErrorPage config={pageConfig} />
+<BaseLayout title={t.errorPages['captcha'].title}>
+  <ErrorPage pageType="captcha" translations={t} />
 </BaseLayout>

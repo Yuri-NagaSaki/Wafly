@@ -37,15 +37,15 @@ errorPages: {
 **方法一：替换默认图片**
 ```bash
 # 将你的图片放到 public 目录，覆盖原有文件
-cp your-bg-1.jpg public/1.jpg
-cp your-bg-2.jpg public/2.jpg
+cp your-bg-1.webp public/1.webp
+cp your-bg-2.webp public/2.webp
 ```
 
 **方法二：修改配置文件**
 ```typescript
 images: {
-  background1: '/my-custom-bg-1.jpg',
-  background2: '/my-custom-bg-2.jpg',
+  background1: '/my-custom-bg-1.webp',
+  background2: '/my-custom-bg-2.webp',
 }
 ```
 
@@ -103,7 +103,7 @@ images: {
 1. **确保图片已准备好**
    ```bash
    ls -la public/
-   # 应该看到 1.jpg 和 2.jpg
+   # 应该看到 1.webp 和 2.webp
    ```
 
 2. **测试构建**
@@ -194,8 +194,8 @@ const pageConfig = enConfig.errorPages['waf-block'];
 <!-- src/pages/waf-block.astro -->
 <ErrorPage
   config={pageConfig}
-  backgroundImage1="/waf-bg-1.jpg"
-  backgroundImage2="/waf-bg-2.jpg"
+  backgroundImage1="/waf-bg-1.webp"
+  backgroundImage2="/waf-bg-2.webp"
 />
 ```
 

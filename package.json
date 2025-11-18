@@ -12,6 +12,9 @@
     "astro": "^5.15.9"
   },
   "devDependencies": {
-    "@astrojs/cloudflare": "^12.6.11"
+    "@astrojs/cloudflare": "^12.6.11",
+    "astro-i18next": "^1.0.0-beta.21",
+    "i18next": "^25.6.2",
+    "sharp": "^0.34.5"
   }
 }

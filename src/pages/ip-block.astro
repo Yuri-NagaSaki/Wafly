@@ -1,15 +1,14 @@
 ---
 /**
- * IP 封禁页面
- * 当 IP 地址被封禁时显示
+ * ip-block 页面 - 中文
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ErrorPage from '../components/ErrorPage.astro';
-import { siteConfig } from '../config/site.config';
+import { useTranslations } from '../i18n/utils';
 
-const pageConfig = siteConfig.errorPages['ip-block'];
+const t = useTranslations('zh');
 ---
 
-<BaseLayout title={pageConfig.title}>
-  <ErrorPage config={pageConfig} />
+<BaseLayout title={t.errorPages['ip-block'].title}>
+  <ErrorPage pageType="ip-block" translations={t} />
 </BaseLayout>

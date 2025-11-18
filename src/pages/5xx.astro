@@ -1,15 +1,14 @@
 ---
 /**
- * 5xx 服务器错误页面
- * 用于显示服务器端错误
+ * 5xx 页面 - 中文
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ErrorPage from '../components/ErrorPage.astro';
-import { siteConfig } from '../config/site.config';
+import { useTranslations } from '../i18n/utils';
 
-const pageConfig = siteConfig.errorPages['5xx'];
+const t = useTranslations('zh');
 ---
 
-<BaseLayout title={pageConfig.title}>
-  <ErrorPage config={pageConfig} />
+<BaseLayout title={t.errorPages['5xx'].title}>
+  <ErrorPage pageType="5xx" translations={t} />
 </BaseLayout>

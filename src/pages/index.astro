@@ -1,18 +1,20 @@
 ---
 /**
- * 首页 - 显示所有可用的错误页面列表
+ * 首页 - 显示所有可用的错误页面列表（中文）
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { siteConfig } from '../config/site.config';
+import { useTranslations } from '../i18n/utils';
 
-const errorPages = Object.entries(siteConfig.errorPages).map(([key, config]) => ({
+const t = useTranslations('zh');
+
+const errorPages = Object.entries(t.errorPages).map(([key, config]) => ({
   path: `/${key}`,
   title: config.title,
   heading: config.heading,
 }));
 ---
 
-<BaseLayout title="Cloudflare WAF 自定义页面">
+<BaseLayout title={t.index.title}>
   <style>
     .container {
       max-width: 1200px;
@@ -22,6 +24,7 @@ const errorPages = Object.entries(siteConfig.errorPages).map(([key, config]) => 
     .header {
       text-align: center;
       margin-bottom: 3rem;
+      position: relative;
     }
     .header h1 {
       font-size: 2.5rem;
@@ -31,6 +34,30 @@ const errorPages = Object.entries(siteConfig.errorPages).map(([key, config]) => 
     .header p {
       font-size: 1.2rem;
       color: #606f7b;
+    }
+    .lang-switch {
+      position: absolute;
+      top: 0;
+      right: 0;
+      display: flex;
+      gap: 0.5rem;
+    }
+    .lang-switch a {
+      padding: 0.5rem 1rem;
+      border: 2px solid #e8e8e8;
+      border-radius: 6px;
+      text-decoration: none;
+      color: #606f7b;
+      transition: all 0.3s;
+    }
+    .lang-switch a:hover {
+      border-color: #2779bd;
+      color: #2779bd;
+    }
+    .lang-switch a.active {
+      border-color: #2779bd;
+      background: #2779bd;
+      color: white;
     }
     .grid {
       display: grid;
@@ -81,15 +108,19 @@ const errorPages = Object.entries(siteConfig.errorPages).map(([key, config]) => 
 
   <div class="container">
     <div class="header">
-      <h1>🛡️ Cloudflare WAF 自定义页面</h1>
-      <p>基于 Astro 构建的动态化错误页面系统</p>
+      <div class="lang-switch">
+        <a href="/" class="active">中文</a>
+        <a href="/en">English</a>
+      </div>
+      <h1>🛡️ {t.index.title}</h1>
+      <p>{t.index.subtitle}</p>
     </div>
 
     <div class="grid">
       {
         errorPages.map((page) => (
           <a href={page.path} class="card">
-            <span class="badge">错误页面</span>
+            <span class="badge">{t.index.badge}</span>
             <h2>{page.title}</h2>
             <p>{page.heading}</p>
           </a>
@@ -98,12 +129,37 @@ const errorPages = Object.entries(siteConfig.errorPages).map(([key, config]) => 
     </div>
 
     <div class="footer">
-      <p>
-        由 <strong>Astro</strong> 驱动 | 部署到 <strong>Cloudflare Pages</strong>
-      </p>
+      <p>{t.index.poweredBy}</p>
       <p style="margin-top: 0.5rem; font-size: 0.875rem;">
-        配置文件位置: <code>src/config/site.config.ts</code>
+        {t.index.configLocation}: <code>src/config/site.config.ts</code>
       </p>
     </div>
   </div>
+
+  <!-- 语言自动检测脚本 -->
+  <script>
+    function detectAndRedirect() {
+      // 检查是否在根路径
+      if (window.location.pathname !== '/') return;
+
+      // 检查 localStorage 是否有保存的语言偏好
+      const savedLang = localStorage.getItem('preferredLang');
+      if (savedLang) return;
+
+      // 获取浏览器语言
+      const browserLang = navigator.language || navigator.languages?.[0];
+      if (!browserLang) return;
+
+      // 提取主要语言代码
+      const primaryLang = browserLang.split('-')[0].toLowerCase();
+
+      // 如果是英文，重定向到英文页面
+      if (primaryLang === 'en') {
+        window.location.href = '/en';
+      }
+    }
+
+    // 页面加载时执行检测
+    detectAndRedirect();
+  </script>
 </BaseLayout>
