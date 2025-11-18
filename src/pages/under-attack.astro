@@ -1,0 +1,15 @@
+---
+/**
+ * 攻击模式页面
+ * 当站点处于"攻击模式"时显示
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ErrorPage from '../components/ErrorPage.astro';
+import { siteConfig } from '../config/site.config';
+
+const pageConfig = siteConfig.errorPages['under-attack'];
+---
+
+<BaseLayout title={pageConfig.title} lang="en">
+  <ErrorPage config={pageConfig} />
+</BaseLayout>

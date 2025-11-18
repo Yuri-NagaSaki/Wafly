@@ -1,0 +1,434 @@
+/* 基础样式重置 */
+html {
+  line-height: 1.15;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+  border-width: 0;
+  border-style: solid;
+  border-color: #dae1e7;
+}
+
+body {
+  margin: 0;
+}
+
+/* 文本元素 */
+p {
+  margin: 5px 0px;
+}
+
+h1 {
+  font-weight: 400;
+  font-size: 1.21rem;
+  margin-bottom: 0;
+}
+
+/* 按钮和输入 */
+button,
+input {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+  overflow: visible;
+}
+
+button {
+  background: transparent;
+  padding: 0;
+  text-transform: none;
+  cursor: pointer;
+}
+
+button:focus {
+  outline: 1px dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+}
+
+/* 工具类 */
+.bg-white {
+  background-color: #fff;
+}
+
+.bg-grey-light {
+  background-color: #ddd;
+}
+
+.flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.items-center {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.justify-center {
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.font-sans {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.font-black {
+  font-weight: 900;
+}
+
+.h-2 {
+  height: 0.18rem;
+}
+
+.leading-normal {
+  line-height: 1.5;
+}
+
+.m-8 {
+  margin: 2rem;
+}
+
+.my-3 {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.mb-7 {
+  margin-bottom: 1.6rem;
+}
+
+.max-w-sm {
+  max-width: 40rem;
+}
+
+.min-h-screen {
+  min-height: 100vh;
+}
+
+.relative {
+  position: relative;
+}
+
+.text-black {
+  color: #22292f;
+}
+
+.text-grey-darker {
+  color: #606f7b;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+}
+
+.text-5xl {
+  font-size: 2rem;
+}
+
+.antialiased {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.w-full {
+  width: 100%;
+}
+
+/* 主体布局 */
+.main-body {
+  display: flex;
+  min-height: 100vh;
+}
+
+.left-sec {
+  width: 100%;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('/1.jpg');
+  background-position: bottom;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.left-sec p,
+.left-sec ul li,
+.left-sec h1 {
+  font-size: 12px;
+  color: #3d3d3d;
+  line-height: 1.35;
+}
+
+.left-sec ul {
+  padding-left: 1.1rem;
+}
+
+.left-sec ul li {
+  margin-bottom: 1rem;
+}
+
+.left-sec ul li strong {
+  font-weight: 600;
+}
+
+.left-sec p.highlight {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.right-sec {
+  position: relative;
+  padding-bottom: 100%;
+  width: 100%;
+  background-image: url('/2.jpg');
+  background-size: 100% 100%;
+}
+
+.content-body {
+  max-width: 40rem;
+  margin: 2rem;
+}
+
+/* 页脚样式 */
+.sub-footer {
+  margin-top: 2rem;
+}
+
+.sub-footer p {
+  color: #747474;
+}
+
+.sub-footer ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.sub-footer ul li {
+  color: #3d3d3d;
+  font-size: 10px;
+  display: inline;
+  margin-left: 5px;
+}
+
+.sub-footer ul li:first-child {
+  margin-left: 0px;
+}
+
+.sub-footer ul li::before {
+  content: '•';
+  padding-right: 6px;
+}
+
+.sub-footer ul li:first-child::before {
+  content: none;
+}
+
+/* 错误详情 */
+ul.cferror_details {
+  border-top: 2rem solid transparent;
+  position: relative;
+  padding-left: 0;
+}
+
+ul.cferror_details::before {
+  content: '';
+  border-top: 2px solid #d3d3d3;
+  width: 100%;
+  top: -11px;
+  position: absolute;
+}
+
+ul.cferror_details li {
+  display: inline;
+  margin-right: 0.6rem;
+  margin-bottom: 0.2rem;
+  font-size: 10px;
+}
+
+ul.cferror_details li::before {
+  content: '•';
+  padding-right: 6px;
+}
+
+ul.cferror_details li:first-child::before {
+  content: none;
+}
+
+.error-text {
+  color: #d3333e !important;
+}
+
+/* 加载动画 */
+@-webkit-keyframes bubbles {
+  33% {
+    -webkit-transform: translateY(10px);
+    transform: translateY(10px);
+  }
+  66% {
+    -webkit-transform: translateY(-10px);
+    transform: translateY(-10px);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
+@keyframes bubbles {
+  33% {
+    -webkit-transform: translateY(10px);
+    transform: translateY(10px);
+  }
+  66% {
+    -webkit-transform: translateY(-10px);
+    transform: translateY(-10px);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
+.bubbles {
+  background-color: #404040;
+  width: 15px;
+  height: 15px;
+  margin: 2px;
+  border-radius: 100%;
+  -webkit-animation: bubbles 0.6s 0.07s infinite ease-in-out;
+  animation: bubbles 0.6s 0.07s infinite ease-in-out;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  display: inline-block;
+}
+
+/* 响应式设计 */
+@media (min-width: 768px) {
+  .md\:flex {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+
+  .md\:my-6 {
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .md\:min-h-screen {
+    min-height: 100vh;
+  }
+
+  .md\:pb-0 {
+    padding-bottom: 0;
+  }
+
+  .md\:text-3xl {
+    font-size: 1.875rem;
+  }
+
+  .md\:text-15xl {
+    font-size: 2rem;
+  }
+
+  .md\:w-1\/2 {
+    width: 50%;
+  }
+
+  .show-mobile {
+    display: none;
+  }
+
+  .show-tablet {
+    display: block;
+  }
+}
+
+@media (max-width: 767px) {
+  .main-body {
+    display: grid;
+    flex-direction: column;
+  }
+
+  .left-sec {
+    order: 2;
+    text-align: center;
+    height: 70vh;
+    background-image: url('/1.jpg') !important;
+  }
+
+  .right-sec {
+    order: 1;
+    padding-bottom: unset;
+    background-size: 100% 185% !important;
+    background-position: center;
+    height: 30vh;
+  }
+
+  .m-8 {
+    margin: 0.5rem 1.8rem;
+  }
+
+  .content-body {
+    max-height: 66vh;
+    overflow-y: scroll;
+  }
+
+  .text-5xl {
+    font-size: 1.7rem;
+  }
+
+  .mb-7 {
+    margin-bottom: 1rem;
+  }
+
+  h1 {
+    font-size: 1.15rem !important;
+  }
+
+  .show-mobile {
+    display: block;
+  }
+
+  .show-tablet {
+    display: none;
+  }
+}
+
+@media (max-width: 992px) and (min-width: 768px) {
+  .md\:w-1\/2 {
+    width: 70%;
+  }
+
+  .md\:w-1\/2:last-child {
+    width: 30%;
+  }
+
+  .right-sec {
+    background-size: unset !important;
+  }
+
+  .left-sec {
+    background-image: url('/1.jpg') !important;
+  }
+}

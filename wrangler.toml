@@ -1,0 +1,11 @@
+name = "cloudflare-waf-pages"
+compatibility_date = "2024-01-01"
+
+# Cloudflare Pages 配置
+pages_build_output_dir = "dist"
+
+[build]
+command = "npm run build"
+
+[env.production]
+# 生产环境配置（如需要）

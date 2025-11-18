@@ -1,0 +1,33 @@
+---
+/**
+ * 基础布局组件
+ * 所有页面的通用布局
+ */
+import '../styles/error-page.css';
+
+export interface Props {
+  title: string;
+  lang?: string;
+}
+
+const { title, lang = 'zh' } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,900"
+      rel="stylesheet"
+    />
+    <title>{title}</title>
+    <slot name="head" />
+  </head>
+  <body class="antialiased font-sans">
+    <slot />
+  </body>
+</html>

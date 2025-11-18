@@ -1,0 +1,15 @@
+---
+/**
+ * 验证码页面
+ * 当需要用户完成验证时显示
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ErrorPage from '../components/ErrorPage.astro';
+import { siteConfig } from '../config/site.config';
+
+const pageConfig = siteConfig.errorPages['captcha'];
+---
+
+<BaseLayout title={pageConfig.title}>
+  <ErrorPage config={pageConfig} />
+</BaseLayout>

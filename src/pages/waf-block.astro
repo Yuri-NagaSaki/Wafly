@@ -1,0 +1,15 @@
+---
+/**
+ * WAF 拦截页面
+ * 当请求触发 WAF 规则时显示
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ErrorPage from '../components/ErrorPage.astro';
+import { siteConfig } from '../config/site.config';
+
+const pageConfig = siteConfig.errorPages['waf-block'];
+---
+
+<BaseLayout title={pageConfig.title}>
+  <ErrorPage config={pageConfig} />
+</BaseLayout>

@@ -1,0 +1,65 @@
+---
+/**
+ * 错误页面组件
+ * 用于显示各种错误信息
+ */
+import type { ErrorPageConfig } from '../config/site.config';
+import { siteConfig } from '../config/site.config';
+
+export interface Props {
+  config: ErrorPageConfig;
+  backgroundImage1?: string;
+  backgroundImage2?: string;
+}
+
+const {
+  config,
+  backgroundImage1 = siteConfig.images.background1,
+  backgroundImage2 = siteConfig.images.background2,
+} = Astro.props;
+---
+
+<div class="md:flex min-h-screen main-body">
+  <div class="w-full md:w-1/2 bg-white flex items-center justify-center left-sec">
+    <div class="max-w-sm m-8 content-body">
+      <div class="text-black text-5xl md:text-15xl font-black">
+        {config.heading}
+      </div>
+
+      <p class="text-grey-darker text-2xl md:text-3xl mb-7 leading-normal">
+        <p class="sub-header">
+          <h1>{config.subHeading}</h1>
+        </p>
+        {
+          config.showContactInfo && (
+            <p class="sub-header">
+              <h1>{siteConfig.adminContact}</h1>
+            </p>
+          )
+        }
+        <br /><br />
+        <Fragment set:html={config.description} />
+      </p>
+
+      <div class="sub-footer">
+        <div class="w-full h-2 bg-grey-light my-3 md:my-6"></div>
+        <ul>
+          <li>Cloudflare事件ID: ::RAY_ID::</li>
+          <li>你的IP: ::CLIENT_IP::</li>
+          <li>Performance &amp; Security by Cloudflare</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="relative pb-full md:flex md:pb-0 md:min-h-screen w-full md:w-1/2 right-sec">
+    <style define:vars={{ backgroundImage1, backgroundImage2 }}>
+      .left-sec {
+        background-image: url(var(--backgroundImage1));
+      }
+      .right-sec {
+        background-image: url(var(--backgroundImage2));
+      }
+    </style>
+  </div>
+</div>

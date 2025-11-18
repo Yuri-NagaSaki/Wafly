@@ -1,16 +1,109 @@
 ---
+/**
+ * 首页 - 显示所有可用的错误页面列表
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { siteConfig } from '../config/site.config';
 
+const errorPages = Object.entries(siteConfig.errorPages).map(([key, config]) => ({
+  path: `/${key}`,
+  title: config.title,
+  heading: config.heading,
+}));
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="Cloudflare WAF 自定义页面">
+  <style>
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .header h1 {
+      font-size: 2.5rem;
+      color: #22292f;
+      margin-bottom: 0.5rem;
+    }
+    .header p {
+      font-size: 1.2rem;
+      color: #606f7b;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .card {
+      background: #fff;
+      border: 2px solid #e8e8e8;
+      border-radius: 8px;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+    .card:hover {
+      border-color: #2779bd;
+      box-shadow: 0 4px 12px rgba(39, 121, 189, 0.15);
+      transform: translateY(-2px);
+    }
+    .card h2 {
+      font-size: 1.5rem;
+      color: #22292f;
+      margin-bottom: 0.5rem;
+    }
+    .card p {
+      color: #606f7b;
+      line-height: 1.6;
+    }
+    .badge {
+      display: inline-block;
+      background: #64d5ca;
+      color: #fff;
+      padding: 0.25rem 0.75rem;
+      border-radius: 12px;
+      font-size: 0.875rem;
+      margin-bottom: 0.75rem;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid #e8e8e8;
+      color: #606f7b;
+    }
+  </style>
+
+  <div class="container">
+    <div class="header">
+      <h1>🛡️ Cloudflare WAF 自定义页面</h1>
+      <p>基于 Astro 构建的动态化错误页面系统</p>
+    </div>
+
+    <div class="grid">
+      {
+        errorPages.map((page) => (
+          <a href={page.path} class="card">
+            <span class="badge">错误页面</span>
+            <h2>{page.title}</h2>
+            <p>{page.heading}</p>
+          </a>
+        ))
+      }
+    </div>
+
+    <div class="footer">
+      <p>
+        由 <strong>Astro</strong> 驱动 | 部署到 <strong>Cloudflare Pages</strong>
+      </p>
+      <p style="margin-top: 0.5rem; font-size: 0.875rem;">
+        配置文件位置: <code>src/config/site.config.ts</code>
+      </p>
+    </div>
+  </div>
+</BaseLayout>

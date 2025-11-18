@@ -1,0 +1,15 @@
+---
+/**
+ * 5xx 服务器错误页面
+ * 用于显示服务器端错误
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ErrorPage from '../components/ErrorPage.astro';
+import { siteConfig } from '../config/site.config';
+
+const pageConfig = siteConfig.errorPages['5xx'];
+---
+
+<BaseLayout title={pageConfig.title}>
+  <ErrorPage config={pageConfig} />
+</BaseLayout>

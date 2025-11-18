@@ -1,0 +1,15 @@
+---
+/**
+ * IP 封禁页面
+ * 当 IP 地址被封禁时显示
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ErrorPage from '../components/ErrorPage.astro';
+import { siteConfig } from '../config/site.config';
+
+const pageConfig = siteConfig.errorPages['ip-block'];
+---
+
+<BaseLayout title={pageConfig.title}>
+  <ErrorPage config={pageConfig} />
+</BaseLayout>
