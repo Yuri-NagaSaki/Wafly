@@ -1,0 +1,14 @@
+---
+/**
+ * ip-block Page - English
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ErrorPage from '../../components/ErrorPage.astro';
+import { useTranslations } from '../../i18n/utils';
+
+const t = useTranslations('en');
+---
+
+<BaseLayout title={t.errorPages['ip-block'].title} lang="en">
+  <ErrorPage pageType="ip-block" translations={t} />
+</BaseLayout>

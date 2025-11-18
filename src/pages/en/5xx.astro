@@ -1,0 +1,14 @@
+---
+/**
+ * 5xx Page - English
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ErrorPage from '../../components/ErrorPage.astro';
+import { useTranslations } from '../../i18n/utils';
+
+const t = useTranslations('en');
+---
+
+<BaseLayout title={t.errorPages['5xx'].title} lang="en">
+  <ErrorPage pageType="5xx" translations={t} />
+</BaseLayout>

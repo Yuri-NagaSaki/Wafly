@@ -1,0 +1,15 @@
+---
+/**
+ * WAF Block Page - English
+ * Displayed when a request triggers WAF rules
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ErrorPage from '../../components/ErrorPage.astro';
+import { useTranslations } from '../../i18n/utils';
+
+const t = useTranslations('en');
+---
+
+<BaseLayout title={t.errorPages['waf-block'].title} lang="en">
+  <ErrorPage pageType="waf-block" translations={t} />
+</BaseLayout>

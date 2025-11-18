@@ -1,0 +1,14 @@
+---
+/**
+ * under-attack Page - English
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ErrorPage from '../../components/ErrorPage.astro';
+import { useTranslations } from '../../i18n/utils';
+
+const t = useTranslations('en');
+---
+
+<BaseLayout title={t.errorPages['under-attack'].title} lang="en">
+  <ErrorPage pageType="under-attack" translations={t} />
+</BaseLayout>
