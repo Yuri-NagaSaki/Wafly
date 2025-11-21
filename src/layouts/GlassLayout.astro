@@ -1,76 +1,81 @@
 ---
-import '../styles/global.css'
+import '../styles/global.css';
+import { useTranslations } from '../i18n/utils';
 
 interface Props {
-	title: string
-	lang?: string
-	contentPosition?: 'center' | 'right' | 'left'
+  title: string;
+  lang?: string;
+  contentPosition?: 'center' | 'right' | 'left';
 }
 
-const { title, lang = 'zh', contentPosition = 'center' } = Astro.props
+const { title, lang = 'zh', contentPosition = 'center' } = Astro.props;
+
+// Get translations based on current language
+const t = useTranslations(lang as any);
 
 const positionClasses = {
-	center: 'items-center justify-center',
-	right: 'items-center justify-center md:justify-end md:pr-24',
-	left: 'items-center justify-center md:justify-start md:pl-24',
-}
+  center: 'items-center justify-center',
+  right: 'items-center justify-center md:justify-end md:pr-24',
+  left: 'items-center justify-center md:justify-start md:pl-24',
+};
 ---
 
 <!doctype html>
 <html lang={lang}>
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<title>{title}</title>
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-		<slot name="head" />
-	</head>
-	<body class="min-h-screen w-full font-sans text-slate-200 overflow-x-hidden">
-		<!-- Background Image -->
-		<div class="fixed inset-0 w-full h-full -z-20">
-			<img src="/background.avif" alt="Background" class="w-full h-full object-cover object-center" />
-			<!-- Overlay to ensure text readability and glass effect -->
-			<div class="absolute inset-0 bg-slate-900/20 backdrop-blur-[2px]"></div>
-		</div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <slot name="head" />
+  </head>
+  <body class="min-h-screen w-full font-sans text-slate-200 overflow-x-hidden">
+    <!-- Background Image -->
+    <div class="fixed inset-0 w-full h-full -z-20">
+        <img src="/background.avif" alt="Background" class="w-full h-full object-cover object-center" />
+        <!-- Overlay to ensure text readability and glass effect -->
+        <div class="absolute inset-0 bg-slate-900/20 backdrop-blur-[2px]"></div>
+    </div>
 
-		<!-- Ambient Light (Optional, lighter than before) -->
-		<div class="fixed inset-0 w-full h-full overflow-hidden pointer-events-none -z-10 opacity-30">
-			<div class="absolute top-0 left-1/4 w-96 h-96 bg-blue-500 rounded-full mix-blend-screen filter blur-[128px] animate-blob"></div>
-			<div class="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500 rounded-full mix-blend-screen filter blur-[128px] animate-blob animation-delay-2000"></div>
-		</div>
+    <!-- Ambient Light -->
+    <div class="fixed inset-0 w-full h-full overflow-hidden pointer-events-none -z-10 opacity-30">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-blue-500 rounded-full mix-blend-screen filter blur-[128px] animate-blob"></div>
+        <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500 rounded-full mix-blend-screen filter blur-[128px] animate-blob animation-delay-2000"></div>
+    </div>
 
-		<div class={`min-h-screen flex p-4 sm:p-6 lg:p-8 relative z-10 ${positionClasses[contentPosition]}`}>
-			<main class="w-full max-w-xl">
-				<div
-					class="backdrop-blur-xl bg-white/40 border border-white/30 rounded-3xl shadow-2xl overflow-hidden relative group transition-all duration-500 hover:bg-white/50"
-				>
-					<!-- Shine effect -->
-					<div
-						class="absolute inset-0 bg-linear-to-tr from-white/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-					>
-					</div>
+    <div class={`min-h-screen flex p-4 sm:p-6 lg:p-8 relative z-10 ${positionClasses[contentPosition]}`}>
+        <main class="w-full max-w-xl flex flex-col gap-6">
+            <!-- Main Card -->
+            <div class="backdrop-blur-xl bg-white/40 border border-white/30 rounded-3xl shadow-2xl overflow-hidden relative group transition-all duration-500 hover:bg-white/50">
+                <!-- Shine effect -->
+                <div class="absolute inset-0 bg-linear-to-tr from-white/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                
+                <div class="p-8 sm:p-10 relative">
+                    <slot />
+                    
+                    <!-- Footer Inside Card -->
+                    <div class="mt-6 pt-5 border-t border-slate-200/20 flex items-center justify-center text-[11px] text-slate-500/90 font-medium tracking-wide uppercase">
+                        <div class="flex items-center gap-2 opacity-80 hover:opacity-100 transition-opacity">
+                            <slot name="footer-left">
+                                <span>Powered by Astro</span>
+                            </slot>
+                            
+                            <span class="text-slate-400/60">•</span>
 
-					<div class="p-8 sm:p-10 relative">
-						<slot />
-					</div>
-				</div>
-
-				<footer class="mt-6 text-center text-white/60 text-xs font-medium tracking-wide drop-shadow-md">
-					<slot name="footer">
-						<div class="flex items-center justify-center gap-2 hover:text-white transition-colors">
-							<svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"
-								><path
-									d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"
-								></path></svg
-							>
-							<span>Protection by Cloudflare</span>
-						</div>
-					</slot>
-				</footer>
-			</main>
-		</div>
-	</body>
+                            <a href="https://www.cloudflare.com" target="_blank" rel="noopener noreferrer" class="hover:text-[#F6821F] transition-colors">
+                                {t.footer.protectionBy}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+  </body>
 </html>

@@ -51,6 +51,7 @@ export const zh = {
     rayId: 'Cloudflare事件ID',
     yourIp: '你的IP',
     poweredBy: 'Performance & Security by Cloudflare',
+    protectionBy: '由 Cloudflare 提供保护',
   },
 
   index: {

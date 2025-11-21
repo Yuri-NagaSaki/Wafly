@@ -51,6 +51,7 @@ export const en = {
     rayId: 'Cloudflare Ray ID',
     yourIp: 'Your IP',
     poweredBy: 'Performance & Security by Cloudflare',
+    protectionBy: 'Protection by Cloudflare',
   },
 
   index: {

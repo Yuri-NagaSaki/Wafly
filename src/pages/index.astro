@@ -42,12 +42,9 @@ const errorPages = Object.entries(t.errorPages).map(([key, config]) => ({
         ))
       }
     </div>
-
-    <!-- Footer Info -->
-    <div class="text-center space-y-2 pt-6 border-t border-slate-200/60 w-full">
-      <p class="text-slate-500 text-xs font-medium">{t.index.poweredBy}</p>
-    </div>
   </div>
+
+  <span slot="footer-left">{t.index.poweredBy}</span>
 
   <!-- 语言自动检测脚本 -->
   <script>
