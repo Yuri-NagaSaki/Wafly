@@ -2,13 +2,46 @@
 /**
  * 100x 页面 - 中文
  */
-import BaseLayout from '../layouts/BaseLayout.astro';
-import ErrorPage from '../components/ErrorPage.astro';
+import GlassLayout from '../layouts/GlassLayout.astro';
 import { useTranslations } from '../i18n/utils';
 
 const t = useTranslations('zh');
+const config = t.errorPages['100x'];
 ---
 
-<BaseLayout title={t.errorPages['100x'].title}>
-  <ErrorPage pageType="100x" translations={t} />
-</BaseLayout>
+<GlassLayout title={config.title} contentPosition="right">
+  <div class="space-y-6">
+    <div class="space-y-2 border-b border-slate-200/60 pb-6">
+        <div class="flex items-center space-x-3">
+            <div class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 text-gray-500 ring-4 ring-gray-50">
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+            </div>
+            <h1 class="text-3xl font-bold text-slate-800 tracking-tight">
+                {config.heading}
+            </h1>
+        </div>
+        <p class="text-base text-slate-600 font-medium pl-13">{config.subHeading}</p>
+    </div>
+
+    <div class="bg-slate-50/50 rounded-xl p-5 border border-slate-100">
+         <div class="text-slate-600 leading-relaxed text-sm space-y-4">
+            <div set:html={config.description}></div>
+            <!-- Placeholder for specific 1xxx errors if Cloudflare injects them, otherwise hidden -->
+            <div class="hidden empty:hidden">::CLOUDFLARE_ERROR_1000S_BOX::</div>
+         </div>
+    </div>
+
+    <div class="pt-2 space-y-3">
+        <div class="flex items-center justify-between text-sm bg-white/40 p-3 rounded-lg border border-white/50">
+            <span class="text-slate-500 font-medium">Ray ID</span>
+            <code class="font-mono text-blue-600 font-semibold">::RAY_ID::</code>
+        </div>
+        <div class="flex items-center justify-between text-sm bg-white/40 p-3 rounded-lg border border-white/50">
+             <span class="text-slate-500 font-medium">Client IP</span>
+            <code class="font-mono text-blue-600 font-semibold">::CLIENT_IP::</code>
+        </div>
+    </div>
+  </div>
+</GlassLayout>

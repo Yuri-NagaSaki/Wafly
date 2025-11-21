@@ -2,13 +2,42 @@
 /**
  * ip-block 页面 - 中文
  */
-import BaseLayout from '../layouts/BaseLayout.astro';
-import ErrorPage from '../components/ErrorPage.astro';
+import GlassLayout from '../layouts/GlassLayout.astro';
 import { useTranslations } from '../i18n/utils';
 
 const t = useTranslations('zh');
+const config = t.errorPages['ip-block'];
 ---
 
-<BaseLayout title={t.errorPages['ip-block'].title}>
-  <ErrorPage pageType="ip-block" translations={t} />
-</BaseLayout>
+<GlassLayout title={config.title} contentPosition="right">
+  <div class="space-y-6">
+    <div class="space-y-2 border-b border-slate-200/60 pb-6">
+        <div class="flex items-center space-x-3">
+            <div class="flex items-center justify-center w-10 h-10 rounded-full bg-red-100 text-red-500 ring-4 ring-red-50">
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                </svg>
+            </div>
+            <h1 class="text-3xl font-bold text-slate-800 tracking-tight">
+                {config.heading}
+            </h1>
+        </div>
+        <p class="text-base text-slate-600 font-medium pl-13">{config.subHeading}</p>
+    </div>
+
+    <div class="bg-slate-50/50 rounded-xl p-5 border border-slate-100">
+         <div class="text-slate-600 leading-relaxed text-sm" set:html={config.description}></div>
+    </div>
+
+    <div class="pt-2 space-y-3">
+        <div class="flex items-center justify-between text-sm bg-white/40 p-3 rounded-lg border border-white/50">
+            <span class="text-slate-500 font-medium">Ray ID</span>
+            <code class="font-mono text-blue-600 font-semibold">::RAY_ID::</code>
+        </div>
+        <div class="flex items-center justify-between text-sm bg-white/40 p-3 rounded-lg border border-white/50">
+             <span class="text-slate-500 font-medium">Your IP</span>
+            <code class="font-mono text-red-600 font-semibold">::CLIENT_IP::</code>
+        </div>
+    </div>
+  </div>
+</GlassLayout>

@@ -2,137 +2,56 @@
 /**
  * Homepage - List of all available error pages (English)
  */
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import { useTranslations } from '../../i18n/utils';
+import GlassLayout from '../../layouts/GlassLayout.astro'
+import { useTranslations } from '../../i18n/utils'
 
-const t = useTranslations('en');
+const t = useTranslations('en')
 
 const errorPages = Object.entries(t.errorPages).map(([key, config]) => ({
-  path: `/en/${key}`,
-  title: config.title,
-  heading: config.heading,
-}));
+	path: `/en/${key}`,
+	title: config.title,
+	heading: config.heading,
+}))
 ---
 
-<BaseLayout title={t.index.title} lang="en">
-  <style>
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 2rem;
-    }
-    .header {
-      text-align: center;
-      margin-bottom: 3rem;
-      position: relative;
-    }
-    .header h1 {
-      font-size: 2.5rem;
-      color: #22292f;
-      margin-bottom: 0.5rem;
-    }
-    .header p {
-      font-size: 1.2rem;
-      color: #606f7b;
-    }
-    .lang-switch {
-      position: absolute;
-      top: 0;
-      right: 0;
-      display: flex;
-      gap: 0.5rem;
-    }
-    .lang-switch a {
-      padding: 0.5rem 1rem;
-      border: 2px solid #e8e8e8;
-      border-radius: 6px;
-      text-decoration: none;
-      color: #606f7b;
-      transition: all 0.3s;
-    }
-    .lang-switch a:hover {
-      border-color: #2779bd;
-      color: #2779bd;
-    }
-    .lang-switch a.active {
-      border-color: #2779bd;
-      background: #2779bd;
-      color: white;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-    .card {
-      background: #fff;
-      border: 2px solid #e8e8e8;
-      border-radius: 8px;
-      padding: 1.5rem;
-      transition: all 0.3s ease;
-      text-decoration: none;
-      color: inherit;
-    }
-    .card:hover {
-      border-color: #2779bd;
-      box-shadow: 0 4px 12px rgba(39, 121, 189, 0.15);
-      transform: translateY(-2px);
-    }
-    .card h2 {
-      font-size: 1.5rem;
-      color: #22292f;
-      margin-bottom: 0.5rem;
-    }
-    .card p {
-      color: #606f7b;
-      line-height: 1.6;
-    }
-    .badge {
-      display: inline-block;
-      background: #64d5ca;
-      color: #fff;
-      padding: 0.25rem 0.75rem;
-      border-radius: 12px;
-      font-size: 0.875rem;
-      margin-bottom: 0.75rem;
-    }
-    .footer {
-      text-align: center;
-      margin-top: 4rem;
-      padding-top: 2rem;
-      border-top: 1px solid #e8e8e8;
-      color: #606f7b;
-    }
-  </style>
+<GlassLayout title={t.index.title} lang="en" contentPosition="center">
+	<div class="flex flex-col items-center space-y-8">
+		<!-- Header -->
+		<div class="text-center space-y-4 relative w-full">
+			<div class="absolute right-0 top-0 flex space-x-2 z-20">
+				<a href="/" class="px-3 py-1 bg-transparent border border-slate-800/20 text-slate-600 rounded-full text-xs font-bold hover:bg-slate-800/10 hover:text-slate-800 transition-colors">中文</a>
+				<a href="/en" class="px-3 py-1 bg-slate-800/10 text-slate-700 rounded-full text-xs font-bold backdrop-blur hover:bg-slate-800/20 transition-colors shadow-sm ring-1 ring-slate-900/5">English</a
+				>
+			</div>
+			<h1 class="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-linear-to-r from-blue-600 to-indigo-600 drop-shadow-sm pt-8 md:pt-0">
+				🛡️ {t.index.title}
+			</h1>
+			<p class="text-base text-slate-600 font-medium max-w-lg mx-auto leading-relaxed">{t.index.subtitle}</p>
+		</div>
 
-  <div class="container">
-    <div class="header">
-      <div class="lang-switch">
-        <a href="/">中文</a>
-        <a href="/en" class="active">English</a>
-      </div>
-      <h1>🛡️ {t.index.title}</h1>
-      <p>{t.index.subtitle}</p>
-    </div>
+		<!-- Grid -->
+		<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
+			{
+				errorPages.map((page) => (
+					<a
+						href={page.path}
+						class="group relative bg-white/60 border border-white/40 rounded-xl p-5 hover:bg-white/80 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-500/10 overflow-hidden"
+					>
+						<div class="absolute inset-0 bg-linear-to-br from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+						<span class="inline-block px-2.5 py-0.5 bg-blue-100 text-blue-700 text-[10px] font-bold uppercase tracking-wider rounded-full mb-2 border border-blue-200">{t.index.badge}</span>
+						<h2 class="text-lg font-bold text-slate-800 mb-1 group-hover:text-blue-700 transition-colors">{page.title}</h2>
+						<p class="text-xs text-slate-500 font-medium group-hover:text-slate-600 transition-colors line-clamp-2">{page.heading}</p>
+					</a>
+				))
+			}
+		</div>
 
-    <div class="grid">
-      {
-        errorPages.map((page) => (
-          <a href={page.path} class="card">
-            <span class="badge">{t.index.badge}</span>
-            <h2>{page.title}</h2>
-            <p>{page.heading}</p>
-          </a>
-        ))
-      }
-    </div>
-
-    <div class="footer">
-      <p>{t.index.poweredBy}</p>
-      <p style="margin-top: 0.5rem; font-size: 0.875rem;">
-        {t.index.configLocation}: <code>src/config/site.config.ts</code>
-      </p>
-    </div>
-  </div>
-</BaseLayout>
+		<!-- Footer Info -->
+		<div class="text-center space-y-2 pt-6 border-t border-slate-200/60 w-full">
+			<p class="text-slate-500 text-xs font-medium">{t.index.poweredBy}</p>
+			<p class="text-[10px] text-slate-400 font-mono bg-slate-100/50 inline-block px-2 py-1 rounded border border-slate-200">
+				{t.index.configLocation}: src/config/site.config.ts
+			</p>
+		</div>
+	</div>
+</GlassLayout>

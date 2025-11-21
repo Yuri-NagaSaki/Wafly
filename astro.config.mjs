@@ -1,10 +1,12 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 
+import tailwindcss from '@tailwindcss/vite';
+
 // https://astro.build/config
-// Cloudflare Pages 静态部署配置
 export default defineConfig({
   output: 'static',
+
   i18n: {
     defaultLocale: 'zh',
     locales: ['zh', 'en'],
@@ -12,7 +14,12 @@ export default defineConfig({
       prefixDefaultLocale: false,
     },
   },
+
   build: {
     format: 'file',
+  },
+
+  vite: {
+    plugins: [tailwindcss()],
   },
 });
