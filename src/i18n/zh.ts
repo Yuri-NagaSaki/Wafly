@@ -54,11 +54,9 @@ export const zh = {
   },
 
   index: {
-    title: 'Cloudflare WAF 自定义页面',
-    subtitle: '基于 Astro 构建的动态化错误页面系统',
+    title: 'Cloudflare WAF',
     badge: '错误页面',
-    poweredBy: '由 Astro 驱动 | 部署到 Cloudflare Pages',
-    configLocation: '配置文件位置',
+    poweredBy: '由 Astro 驱动',
   },
 };
 

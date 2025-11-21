@@ -54,11 +54,9 @@ export const en = {
   },
 
   index: {
-    title: 'Cloudflare WAF Custom Pages',
-    subtitle: 'Dynamic error page system built with Astro',
+    title: 'Cloudflare WAF',
     badge: 'Error Page',
-    poweredBy: 'Powered by Astro | Deployed to Cloudflare Pages',
-    configLocation: 'Configuration file location',
+    poweredBy: 'Powered by Astro',
   },
 };
 

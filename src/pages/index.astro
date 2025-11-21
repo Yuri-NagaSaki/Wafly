@@ -18,14 +18,13 @@ const errorPages = Object.entries(t.errorPages).map(([key, config]) => ({
   <div class="flex flex-col items-center space-y-8">
     <!-- Header -->
     <div class="text-center space-y-4 relative w-full">
-      <div class="absolute right-0 top-0 flex space-x-2 z-20">
+      <h1 class="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-linear-to-r from-blue-600 to-indigo-600 drop-shadow-sm">
+        🛡️ {t.index.title}
+      </h1>
+      <div class="flex justify-center space-x-2 z-20">
         <a href="/" class="px-3 py-1 bg-slate-800/10 text-slate-700 rounded-full text-xs font-bold backdrop-blur hover:bg-slate-800/20 transition-colors shadow-sm ring-1 ring-slate-900/5">中文</a>
         <a href="/en" class="px-3 py-1 bg-transparent border border-slate-800/20 text-slate-600 rounded-full text-xs font-bold hover:bg-slate-800/10 hover:text-slate-800 transition-colors">English</a>
       </div>
-      <h1 class="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-linear-to-r from-blue-600 to-indigo-600 drop-shadow-sm pt-8 md:pt-0">
-        🛡️ {t.index.title}
-      </h1>
-      <p class="text-base text-slate-600 font-medium max-w-lg mx-auto leading-relaxed">{t.index.subtitle}</p>
     </div>
 
     <!-- Grid -->
@@ -47,9 +46,6 @@ const errorPages = Object.entries(t.errorPages).map(([key, config]) => ({
     <!-- Footer Info -->
     <div class="text-center space-y-2 pt-6 border-t border-slate-200/60 w-full">
       <p class="text-slate-500 text-xs font-medium">{t.index.poweredBy}</p>
-      <p class="text-[10px] text-slate-400 font-mono bg-slate-100/50 inline-block px-2 py-1 rounded border border-slate-200">
-        {t.index.configLocation}: src/config/site.config.ts
-      </p>
     </div>
   </div>
 
