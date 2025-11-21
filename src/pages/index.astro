@@ -9,21 +9,23 @@ const t = useTranslations('zh');
 
 // 只显示核心必需的页面，隐藏重复的旧版页面
 const corePages = [
-  'waf-block',
-  'ip-block',
-  'rate-limit',
-  'interactive-challenge',
-  'managed-challenge',
-  'country-challenge',
-  'javascript-challenge',
-  '100x',
-  '5xx',
+  { key: 'waf-block', code: '403', type: 'block' },
+  { key: 'ip-block', code: '403', type: 'block' },
+  { key: 'rate-limit', code: '429', type: 'block' },
+  { key: 'interactive-challenge', code: '403', type: 'challenge' },
+  { key: 'managed-challenge', code: '403', type: 'challenge' },
+  { key: 'country-challenge', code: '403', type: 'challenge' },
+  { key: 'javascript-challenge', code: '403', type: 'challenge' },
+  { key: '100x', code: '1xxx', type: 'error' },
+  { key: '5xx', code: '5xx', type: 'error' },
 ];
 
-const errorPages = corePages.map((key) => ({
-  path: `/${key}`,
-  title: t.errorPages[key].title,
-  heading: t.errorPages[key].heading,
+const errorPages = corePages.map((page) => ({
+  path: `/${page.key}`,
+  title: t.errorPages[page.key].title,
+  heading: t.errorPages[page.key].heading,
+  code: page.code,
+  type: page.type,
 }));
 ---
 
@@ -46,9 +48,18 @@ const errorPages = corePages.map((key) => ({
         errorPages.map((page) => (
           <a href={page.path} class="group relative bg-white/60 border border-white/40 rounded-xl p-5 hover:bg-white/80 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-500/10 overflow-hidden">
             <div class="absolute inset-0 bg-linear-to-br from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            <span class="inline-block px-2.5 py-0.5 bg-blue-100 text-blue-700 text-[10px] font-bold uppercase tracking-wider rounded-full mb-2 border border-blue-200">
-                {t.index.badge}
-            </span>
+            <div class="flex items-center justify-between mb-2">
+              <span class="inline-block px-2.5 py-0.5 bg-blue-100 text-blue-700 text-[10px] font-bold uppercase tracking-wider rounded-full border border-blue-200">
+                  {t.index.badge}
+              </span>
+              <span class={`px-2 py-0.5 text-[10px] font-mono font-bold rounded ${
+                page.type === 'error' ? 'bg-red-100 text-red-700 border border-red-200' :
+                page.type === 'block' ? 'bg-orange-100 text-orange-700 border border-orange-200' :
+                'bg-yellow-100 text-yellow-700 border border-yellow-200'
+              }`}>
+                HTTP {page.code}
+              </span>
+            </div>
             <h2 class="text-lg font-bold text-slate-800 mb-1 group-hover:text-blue-700 transition-colors">{page.title}</h2>
             <p class="text-xs text-slate-500 font-medium group-hover:text-slate-600 transition-colors line-clamp-2">{page.heading}</p>
           </a>
