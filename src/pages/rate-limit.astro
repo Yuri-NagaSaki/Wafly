@@ -1,0 +1,70 @@
+---
+/**
+ * Rate Limit 页面 - 中文
+ * 当请求速率超过限制时显示，返回 429 状态码
+ */
+import GlassLayout from '../layouts/GlassLayout.astro';
+import { useTranslations } from '../i18n/utils';
+
+const t = useTranslations('zh');
+const config = t.errorPages['rate-limit'];
+---
+
+<GlassLayout title={config.title} contentPosition="right">
+  <div class="space-y-6">
+    <!-- Title Section -->
+    <div class="space-y-2 border-b border-slate-200/60 pb-6">
+        <div class="flex items-center space-x-3">
+            <div class="flex items-center justify-center w-10 h-10 rounded-full bg-yellow-100 text-yellow-600 ring-4 ring-yellow-50">
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+            </div>
+            <h1 class="text-3xl font-bold text-slate-800 tracking-tight">
+                {config.heading}
+            </h1>
+        </div>
+        <p class="text-base text-slate-600 font-medium pl-13">{config.subHeading}</p>
+    </div>
+
+    <!-- Description -->
+    <div class="bg-yellow-50/50 rounded-xl p-5 border border-yellow-100">
+         <div class="text-slate-700 leading-relaxed text-sm space-y-2" set:html={config.description}></div>
+    </div>
+
+    <!-- Rate Limit Info -->
+    <div class="bg-slate-50/50 rounded-xl p-5 border border-slate-100">
+        <div class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <div class="text-sm text-slate-600 space-y-1">
+                <p class="font-semibold text-slate-700">什么是速率限制？</p>
+                <p>速率限制可保护网站免受过多请求的影响，无论这些请求是恶意的还是合法的。请稍后重试您的请求。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Technical Details -->
+    <div class="pt-2 space-y-3">
+        <div class="flex items-center justify-between text-sm bg-white/40 p-3 rounded-lg border border-white/50">
+            <span class="text-slate-500 font-medium flex items-center gap-2">
+                 <svg class="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Ray ID
+            </span>
+            <code class="font-mono text-blue-600 font-semibold">::RAY_ID::</code>
+        </div>
+        <div class="flex items-center justify-between text-sm bg-white/40 p-3 rounded-lg border border-white/50">
+             <span class="text-slate-500 font-medium flex items-center gap-2">
+                <svg class="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                Client IP
+            </span>
+            <code class="font-mono text-blue-600 font-semibold">::CLIENT_IP::</code>
+        </div>
+    </div>
+  </div>
+</GlassLayout>

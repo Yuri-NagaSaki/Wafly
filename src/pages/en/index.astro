@@ -7,10 +7,23 @@ import { useTranslations } from '../../i18n/utils'
 
 const t = useTranslations('en')
 
-const errorPages = Object.entries(t.errorPages).map(([key, config]) => ({
+// Only display core required pages, hide duplicate legacy pages
+const corePages = [
+  'waf-block',
+  'ip-block',
+  'rate-limit',
+  'interactive-challenge',
+  'managed-challenge',
+  'country-challenge',
+  'javascript-challenge',
+  '100x',
+  '5xx',
+];
+
+const errorPages = corePages.map((key) => ({
 	path: `/en/${key}`,
-	title: config.title,
-	heading: config.heading,
+	title: t.errorPages[key].title,
+	heading: t.errorPages[key].heading,
 }))
 ---
 

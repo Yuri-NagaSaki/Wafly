@@ -1,0 +1,53 @@
+---
+/**
+ * country-challenge page - English
+ * Country Challenge
+ */
+import GlassLayout from '../../layouts/GlassLayout.astro';
+import { useTranslations } from '../../i18n/utils';
+
+const t = useTranslations('en');
+const config = t.errorPages['country-challenge'];
+---
+
+<GlassLayout title={config.title} contentPosition="right">
+  <div class="space-y-6">
+    <div class="space-y-2 border-b border-slate-200/60 pb-6">
+        <div class="flex items-center space-x-3">
+            <div class="flex items-center justify-center w-10 h-10 rounded-full bg-purple-100 text-purple-600 ring-4 ring-purple-50">
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+            </div>
+            <h1 class="text-3xl font-bold text-slate-800 tracking-tight">
+                {config.heading}
+            </h1>
+        </div>
+        <p class="text-base text-slate-600 font-medium pl-13">{config.subHeading}</p>
+    </div>
+
+    <!-- Captcha Widget Container -->
+    <div class="cf-captcha-container min-h-[100px] flex items-center justify-center py-4 bg-slate-50/50 rounded-xl border border-slate-100">
+         <div class="text-slate-600">::CAPTCHA_BOX::</div>
+    </div>
+
+    <div class="text-sm text-slate-500 text-center">
+        {config.description}
+    </div>
+
+    <div class="pt-2 space-y-3">
+        <div class="flex items-center justify-between text-sm bg-white/40 p-3 rounded-lg border border-white/50">
+            <span class="text-slate-500 font-medium">Ray ID</span>
+            <code class="font-mono text-blue-600 font-semibold">::RAY_ID::</code>
+        </div>
+        <div class="flex items-center justify-between text-sm bg-white/40 p-3 rounded-lg border border-white/50">
+             <span class="text-slate-500 font-medium">Client IP</span>
+            <code class="font-mono text-blue-600 font-semibold">::CLIENT_IP::</code>
+        </div>
+        <div class="flex items-center justify-between text-sm bg-white/40 p-3 rounded-lg border border-white/50">
+             <span class="text-slate-500 font-medium">Location</span>
+            <code class="font-mono text-blue-600 font-semibold">::GEO::</code>
+        </div>
+    </div>
+  </div>
+</GlassLayout>
